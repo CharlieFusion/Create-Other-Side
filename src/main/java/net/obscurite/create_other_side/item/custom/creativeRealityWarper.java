@@ -1,20 +1,14 @@
 package net.obscurite.create_other_side.item.custom;
 
-import com.simibubi.create.foundation.utility.NBTHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.obscurite.create_other_side.density.ChunkDensity;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 public class creativeRealityWarper extends Item {
     public static final String TAG_VALUE = "value";
@@ -22,9 +16,6 @@ public class creativeRealityWarper extends Item {
     public creativeRealityWarper(Item.Properties pProperties) {
         super(pProperties);
     }
-
-    // TODO: Make sneaking to change the value of warping
-    // TODO: Make functionality of clicking and warping
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
