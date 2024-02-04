@@ -12,28 +12,18 @@ public class ChunkDensity {
     private static ConcurrentHashMap<ChunkPos, Double> data = new ConcurrentHashMap<>();
 
     public static void outputDensityState(ChunkPos position, Player player, CompoundTag compound) {
-        player.sendSystemMessage(Component.literal("Density for " + position + ": " +
-                compound.getDouble(KEY)));
+        player.displayClientMessage(
+                Component.translatable(
+                    "tooltip.create_other_side.reality_meter.get_value",
+                    "" + position, compound.getCompound(KEY).getDouble(position.toString())),
+                false);
     }
 
     public static void readData(LevelAccessor world, ChunkPos key, CompoundTag compound) {
-        if(compound.contains(KEY)) {
-            data.put(key, compound.getDouble(KEY));
+        if(data.containsKey(key)) {
+            data.put(key, compound.getCompound(KEY).getDouble(key.toString()));
         } else {
             data.put(key, 100.0);
-        }
-    }
-
-    public static void changeData(LevelAccessor world, ChunkPos key, CompoundTag compound, double value) {
-        if(compound.contains(KEY)) {
-            double new_value = compound.getInt(KEY) + value;
-            new_value =
-                    new_value <= 100.0 && new_value >= 0.0 ? new_value : Math.min(Math.max(new_value, 0.0), 100.0);
-            data.put(key, new_value);
-        } else {
-            double new_value = 100.0 + value;
-
-            data.put(key, new_value);
         }
     }
 
@@ -48,5 +38,18 @@ public class ChunkDensity {
         });
 
         compound.put(KEY, nbt);
+    }
+
+    public static void changeData(LevelAccessor world, ChunkPos key, CompoundTag compound, double value) {
+        double new_value;
+        if(data.containsKey(key)) {
+            new_value = compound.getCompound(KEY).getDouble(key.toString()) + value;
+        } else {
+            new_value = 100.0 + value;
+        }
+        new_value =
+                new_value <= 100.0 && new_value >= 0.0 ? new_value : Math.min(Math.max(new_value, 0.0), 100.0);
+        data.put(key, new_value);
+        saveData(world, key, compound);
     }
 }
