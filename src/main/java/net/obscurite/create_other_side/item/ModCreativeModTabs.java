@@ -18,8 +18,10 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("creativetab.other_side_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.REALITY_METER.get());
+                        pOutput.accept(ModItems.CREATIVE_REALITY_WARPER.get());
                     })
                     .build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

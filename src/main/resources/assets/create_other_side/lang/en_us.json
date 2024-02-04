@@ -2,5 +2,12 @@
   "item.create_other_side.reality_meter": "Reality Meter",
   "item.create_other_side.creative_reality_warper": "Creative Reality Warper",
 
+
+  "tooltip.create_other_side.reality_meter.get_value": "Density for %s: %f",
+
+  "tooltip.create_other_side.creative_reality_warper.change_value": "Warping value: %f",
+  "tooltip.create_other_side.creative_reality_warper.value_edited": "Density for %s is now %f",
+
+
   "creativetab.other_side_tab": "Create: Other Side"
 }

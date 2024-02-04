@@ -27,6 +27,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.obscurite.create_other_side.block.ModBlocks;
 import net.obscurite.create_other_side.item.ModCreativeModTabs;
 import net.obscurite.create_other_side.item.ModItems;
 import org.slf4j.Logger;
@@ -46,6 +47,7 @@ public class Create_Other_Side
 
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
