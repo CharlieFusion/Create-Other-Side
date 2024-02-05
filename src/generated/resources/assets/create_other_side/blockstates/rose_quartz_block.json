@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_other_side:block/rose_quartz_block"
+    }
+  }
+}

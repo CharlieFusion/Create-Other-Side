@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Q": {
+      "item": "create:rose_quartz"
+    }
+  },
+  "pattern": [
+    "QQQ",
+    "QQQ",
+    "QQQ"
+  ],
+  "result": {
+    "item": "create_other_side:rose_quartz_block"
+  },
+  "show_notification": true
+}
