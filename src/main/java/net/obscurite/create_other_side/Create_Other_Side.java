@@ -1,6 +1,7 @@
 package net.obscurite.create_other_side;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,9 +28,12 @@ public class Create_Other_Side
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MOD_ID);
+
     public Create_Other_Side()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        REGISTRATE.registerEventListeners(modEventBus);
 
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
@@ -39,6 +43,10 @@ public class Create_Other_Side
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+    }
+
+    public static CreateRegistrate registrate() {
+        return REGISTRATE;
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
