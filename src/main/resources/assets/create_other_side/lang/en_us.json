@@ -2,6 +2,7 @@
   "item.create_other_side.reality_meter": "Reality Meter",
   "item.create_other_side.creative_reality_warper": "Creative Reality Warper",
 
+  "block.create_other_side.rose_quartz_block": "Block of Rose Quartz",
 
   "tooltip.create_other_side.reality_meter.get_value": "Density for %s: %f",
 
