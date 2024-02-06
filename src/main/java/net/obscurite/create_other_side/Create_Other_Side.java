@@ -14,9 +14,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.obscurite.create_other_side.block.ModBlocks;
-import net.obscurite.create_other_side.item.ModCreativeModTabs;
-import net.obscurite.create_other_side.item.ModItems;
+import net.obscurite.create_other_side.register.ModBlockEntities;
+import net.obscurite.create_other_side.register.ModBlocks;
+import net.obscurite.create_other_side.register.ModCreativeModTabs;
+import net.obscurite.create_other_side.register.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -38,6 +39,7 @@ public class Create_Other_Side
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
