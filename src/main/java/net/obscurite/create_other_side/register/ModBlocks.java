@@ -1,4 +1,4 @@
-package net.obscurite.create_other_side.block;
+package net.obscurite.create_other_side.register;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -10,9 +10,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.obscurite.create_other_side.Create_Other_Side;
-import net.obscurite.create_other_side.item.ModItems;
+import net.obscurite.create_other_side.block.ConcentratorBlock;
 
 import java.util.function.Supplier;
+
+import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -20,6 +22,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ROSE_QUARTZ_BLOCK = registerBlock("rose_quartz_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.QUARTZ_BLOCK)));
+
+    public static final RegistryObject<Block> CONCENTRATOR = registerBlock("concentrator",
+            () -> new ConcentratorBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

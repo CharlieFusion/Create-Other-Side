@@ -7,7 +7,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
-import net.obscurite.create_other_side.block.ModBlocks;
+import net.obscurite.create_other_side.register.ModBlocks;
 
 import java.util.function.Consumer;
 

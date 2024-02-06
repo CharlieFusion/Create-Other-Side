@@ -1,4 +1,4 @@
-package net.obscurite.create_other_side.item;
+package net.obscurite.create_other_side.register;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -6,7 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.obscurite.create_other_side.Create_Other_Side;
-import net.obscurite.create_other_side.block.ModBlocks;
+import net.obscurite.create_other_side.register.ModBlocks;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;

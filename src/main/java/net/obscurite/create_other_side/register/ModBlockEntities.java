@@ -16,6 +16,11 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Create_Other_Side.MOD_ID);
 
+    public static final RegistryObject<BlockEntityType<ConcentratorBlockEntity>> CONCENTRATOR_BE =
+            BLOCK_ENTITIES.register("concentrator_be", () ->
+                    BlockEntityType.Builder.of(ConcentratorBlockEntity::new,
+                            ModBlocks.CONCENTRATOR.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

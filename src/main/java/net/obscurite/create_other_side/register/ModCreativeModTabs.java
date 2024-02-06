@@ -1,4 +1,4 @@
-package net.obscurite.create_other_side.item;
+package net.obscurite.create_other_side.register;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -8,7 +8,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.obscurite.create_other_side.Create_Other_Side;
-import net.obscurite.create_other_side.block.ModBlocks;
 
 public class ModCreativeModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -22,6 +21,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.CREATIVE_REALITY_WARPER.get());
 
                         pOutput.accept(ModBlocks.ROSE_QUARTZ_BLOCK.get());
+                        pOutput.accept(ModBlocks.CONCENTRATOR.get());
                     })
                     .build());
 
