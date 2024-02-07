@@ -14,6 +14,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.obscurite.create_other_side.density.ChunkEvents;
 import net.obscurite.create_other_side.register.ModBlockEntities;
 import net.obscurite.create_other_side.register.ModBlocks;
 import net.obscurite.create_other_side.register.ModCreativeModTabs;
@@ -43,9 +44,11 @@ public class Create_Other_Side
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new ChunkEvents());
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
+
 
     public static CreateRegistrate registrate() {
         return REGISTRATE;

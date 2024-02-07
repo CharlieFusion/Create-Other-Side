@@ -1,6 +1,6 @@
 package net.obscurite.create_other_side.item.custom;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -20,10 +20,13 @@ public class densityMeter extends Item {
 
             assert player != null;
             ChunkPos chunkpos = player.chunkPosition();
-            CompoundTag compound = pContext.getPlayer().getPersistentData();
+            player.displayClientMessage(
+                    Component.translatable(
+                            "tooltip.create_other_side.reality_meter.get_value",
+                            "" + chunkpos, ChunkDensity.getDensityState(chunkpos)),
+                    false);
 
-            ChunkDensity.readData(pContext.getLevel(), chunkpos, compound);
-            ChunkDensity.outputDensityState(chunkpos, player, compound);
+            System.out.println(ChunkDensity.data);
         }
 
         return InteractionResult.SUCCESS;
