@@ -2,6 +2,7 @@ package net.obscurite.create_other_side.density;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,6 +20,7 @@ import net.minecraftforge.event.level.ChunkDataEvent;
 import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.level.ChunkWatchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.obscurite.create_other_side.worldgen.portal.ModTeleporter;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -56,9 +58,16 @@ public class ChunkEvents {
                 if (value == null) value = 0;
                 teledata.put(player, value + 1);
                 if (value == TELEPORT_TIME * 20) { // TELEPORT_TIME (secs) * 40 = N (ticks)
-                    player.teleportRelative(16, 16, 16);
-                    player.sendSystemMessage(Component.literal("Teleportation Success"));
-                    teledata.remove(player);
+                    if (ChunkDensity.getTeleportationData().get(player.chunkPosition()).get("NETHER")){
+                        player.changeDimension(player.getServer().getLevel(Level.NETHER),
+                                new ModTeleporter(player.chunkPosition().getMiddleBlockPosition(16),
+                                true));
+                    } else if (ChunkDensity.getTeleportationData().get(player.chunkPosition()).get("END")){
+                        player.changeDimension(player.getServer().getLevel(Level.END));
+                    } else if (ChunkDensity.getTeleportationData().get(player.chunkPosition()).get("THE_DIMENSION")){
+                        player.teleportRelative(16, 16, 16);
+                        player.sendSystemMessage(Component.literal("Teleportation Success"));
+                    }
                 }
                 player.addEffect(
                         new MobEffectInstance(MobEffects.CONFUSION, 5 * 20, 1,
@@ -66,13 +75,4 @@ public class ChunkEvents {
             } else teledata.remove(player);
         }
     }
-
-//    @SubscribeEvent
-//    public void onChunkWatch(ChunkWatchEvent.Watch event) {
-//        if(event.getLevel().isClientSide())
-//            return;
-//
-//        // Here needs to be some code for player's can use Density as a magic (?)
-//    }
-
 }

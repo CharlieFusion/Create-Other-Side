@@ -25,8 +25,6 @@ public class densityMeter extends Item {
                             "tooltip.create_other_side.reality_meter.get_value",
                             "" + chunkpos, ChunkDensity.getDensityState(chunkpos)),
                     false);
-
-            System.out.println(ChunkDensity.data);
         }
 
         return InteractionResult.SUCCESS;

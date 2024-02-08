@@ -42,7 +42,7 @@ public class ConcentratorBlock extends BaseEntityBlock {
         && check2 instanceof ConcentratorBlockEntity
         && check3 instanceof ConcentratorBlockEntity
         && check4 instanceof ConcentratorBlockEntity) {
-            ((ConcentratorBlockEntity) check1).IS_STRUCTURED = true;
+            ChunkDensity.setConcentrationState(chunk, true);
         }
     }
 
@@ -51,7 +51,7 @@ public class ConcentratorBlock extends BaseEntityBlock {
         ChunkPos chunk = new ChunkPos(pPos);
         BlockEntity check1 = pLevel.getBlockEntity(chunk.getBlockAt(0, pPos.getY(), 0));
         if (check1 instanceof ConcentratorBlockEntity) {
-            ((ConcentratorBlockEntity) check1).IS_STRUCTURED = false;
+            ChunkDensity.setConcentrationState(chunk, false);
         }
 
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
