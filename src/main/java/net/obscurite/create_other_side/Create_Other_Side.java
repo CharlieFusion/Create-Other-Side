@@ -5,7 +5,6 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.obscurite.create_other_side.density.ChunkEvents;
+import net.obscurite.create_other_side.events.ModEvents;
 import net.obscurite.create_other_side.register.ModBlockEntities;
 import net.obscurite.create_other_side.register.ModBlocks;
 import net.obscurite.create_other_side.register.ModCreativeModTabs;
@@ -45,7 +44,7 @@ public class Create_Other_Side
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ChunkEvents());
+        MinecraftForge.EVENT_BUS.register(new ModEvents.Events());
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

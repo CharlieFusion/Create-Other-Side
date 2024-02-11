@@ -2,16 +2,12 @@ package net.obscurite.create_other_side.item.custom;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.Level;
-import net.obscurite.create_other_side.density.ChunkDensity;
-import net.obscurite.create_other_side.density.ChunkEvents;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.obscurite.create_other_side.capabilities.density.ChunkDensityProvider;
 
 public class creativeRealityWarper extends Item {
     public static final String TAG_VALUE = "value";
@@ -48,16 +44,30 @@ public class creativeRealityWarper extends Item {
                     newNum = tag.getDouble(TAG_VALUE);
                 }
 
-                ChunkDensity.changeData(pContext.getLevel(), player.chunkPosition(), newNum);
+                double finalNewNum = newNum;
+                LevelChunk chunk = pContext.getLevel().getChunk(player.chunkPosition().x, player.chunkPosition().z);
 
-                player.displayClientMessage(
-                        Component.translatable(
-                                "tooltip.create_other_side.creative_reality_warper.value_edited",
-                                "" + player.chunkPosition(),
-                                ChunkDensity.getDensityState(player.chunkPosition())),
-                        true);
+                chunk.getCapability(ChunkDensityProvider.CHUNK_DENSITY).ifPresent(density -> {
+                    density.changeDensity(finalNewNum);
+                    chunk.setUnsaved(true);
+                    player.displayClientMessage(
+                            Component.translatable(
+                                    "tooltip.create_other_side.creative_reality_warper.value_edited",
+                                    "" + player.chunkPosition(),
+                                    density.getDensity()),
+                            true);
+                });
 
 
+
+//                ChunkDensity.changeData(pContext.getLevel(), player.chunkPosition(), newNum);
+//
+//                player.displayClientMessage(
+//                        Component.translatable(
+//                                "tooltip.create_other_side.creative_reality_warper.value_edited",
+//                                "" + player.chunkPosition(),
+//                                ChunkDensity.getDensityState(player.chunkPosition())),
+//                        true);
             }
         }
 
